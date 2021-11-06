@@ -24,18 +24,22 @@ class Card:
 		self.card_height = 8
 		self.color = None
 
-	def display(self):
+	def __repr__(self):
 		"""
 		"""
 		side_bars = '||'
 		top_bars = '='
-		vert_line = f'\t.:{top_bars * (self.card_length - 4)}:.'
-		empty_line = f"\t{side_bars}{' ' * (self.card_length - len(side_bars) * 2)}{side_bars}"
+		vert_line = f'\t.:{top_bars * (self.card_length - 4)}:.\n'
+		empty_line = f"\t{side_bars}{' ' * (self.card_length - len(side_bars) * 2)}{side_bars}\n"
 
-		print(vert_line)
 		num = f' {str(self.value)}'
 		symbol = f'{self.suit_graphic[self.suit]} '
-		print(f"\t{side_bars}{num}{' ' * (self.card_length - len(side_bars) * 2 - len(num) - len(symbol))}{symbol}{side_bars}")
+		first_line = f"\t{side_bars}{num}{' ' * (self.card_length - len(side_bars) * 2 - len(num) - len(symbol))}{symbol}{side_bars}\n"
+
+		output = vert_line
+		output += first_line
 		for i in range(0, self.card_height - 1):
-			print(empty_line)
-		print(vert_line)
+			output += empty_line
+		output += vert_line
+
+		return output
